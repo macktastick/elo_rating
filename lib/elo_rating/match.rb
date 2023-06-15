@@ -19,8 +19,9 @@ class EloRating::Match
   #
   # Raises an +ArgumentError+ if the rating or place is not numeric, or if
   # both winner and place is specified.
-  def add_player(player_attributes)
-    players << Player.new(player_attributes.merge(match: self))
+  def add_player(**player_attributes)
+    player_params_hash = player_attributes.merge(match: self)
+    players << Player.new(**player_params_hash)
     self
   end
 
@@ -117,4 +118,3 @@ class EloRating::Match
     end
   end
 end
-
